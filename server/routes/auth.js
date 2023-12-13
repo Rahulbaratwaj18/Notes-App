@@ -13,7 +13,7 @@ const  GoogleStrategy = require('passport-google-oauth20').Strategy;
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECERT,
-    callbackURL: "http://localhost:3000/google/callback"
+    callbackURL: "https://notes-app-xd53.onrender.com/auth/google/callback"
   },
  async function(accessToken, refreshToken, profile, done) {
    
@@ -47,7 +47,7 @@ passport.use(new GoogleStrategy({
 router.get('/auth/google',
   passport.authenticate('google', { scope: ['email','profile'] }));
 
-router.get('/google/callback', 
+router.get('/auth/google/callback', 
   passport.authenticate('google', { 
     failureRedirect: '/login-failure',
     successRedirect:"/dashboard" }),
